@@ -1,0 +1,62 @@
+<div class="container">
+
+    <div class="title">
+        <h3>予定一覧</h3>
+        <p class="newSchedule"><%= link_to "新規追加", :new_schedule , class:"newButton" %></p>
+    </div>
+
+    <% if flash[:notice] %>
+        <p class="notice"><%= flash[:notice] %></p>
+    <% end %>
+
+    <div class="table">
+        <table class="scheduleTable">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>タイトル</th>
+                    <th>開始日</th>
+                    <th>終了日</th>
+                    <th>終日</th>
+                    <th>更新日</th>
+                    <th>詳細</th>
+                    <th>編集</th>
+                    <th>削除</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% @schedules.each do |schedule| %>
+                    <tr>
+                        <td><%= schedule.id %></td>
+                        <td><%= schedule.title %></td>
+                        <td align="center"><%= schedule.startdate.strftime("%Y/%m/%d") %></td>
+                        <td align="center"><%= schedule.enddate.strftime("%Y/%m/%d") %></td>
+                        <td align="center">
+                            <% if schedule.allday %>
+                                ⚪︎
+                            <% else %>
+
+                            <% end %>
+                        </td>
+                        <td align="center"><%= schedule.updated_at.to_s(:datetime_jp) %></td>
+                        <td align="center">
+                            <%= link_to "詳細", schedule , class:"action" %>
+                        </td>
+                        <td align="center">
+                            <%= link_to "編集", [:edit, schedule] , class:"action" %>
+                        </td>
+                        <td align="center">
+                            <%= link_to "削除", schedule, method: :delete , data: { confirm: "本当に削除しますか？" } , class:"action" %>
+                        </td>
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="footer">
+        <p class="schedule_sum">予定合計 <span class="schedule_count"><%= Schedule.count %></span> 件</p>
+        <p class="date_today">本日の日付 <%= Time.zone.today.strftime("%Y/%m/%d") %></p>
+    </div>
+</div> 
