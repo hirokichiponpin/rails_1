@@ -1,0 +1,42 @@
+<div class="container-show">
+
+    <div class="back-index">
+        <%= link_to "← 一覧に戻る", :schedules , class:"cancel-show" %>
+    </div>
+
+    <div class="show-header">
+        <h3 class="title-show"><%= @schedule.title %></h3>
+
+        <%= link_to "編集", edit_schedule_path(@schedule) , class:"show-to-edit" %>
+    </div>
+
+    <div class="detail">
+        <table class="table-show">
+            <tr>
+                <th>開始日</th>
+                <td><%= @schedule.startdate.strftime("%Y/%m/%d") %></td>
+            </tr>
+
+            <tr>
+                <th>終了日</th>
+                <td><%= @schedule.enddate.strftime("%Y/%m/%d") %></td>
+            </tr>
+
+            <tr>
+                <th>終日</th>
+                <td>
+                    <% if @schedule.allday %>
+                        ⚪︎
+                    <% else %>
+
+                    <% end %>
+                </td>
+            </tr>
+
+            <tr>
+                <th>スケジュールメモ</th>
+                <td><%= @schedule.memo %></td>
+            </tr>
+        </table>
+    </div>
+</div>

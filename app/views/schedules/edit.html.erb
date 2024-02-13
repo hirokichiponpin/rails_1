@@ -1,0 +1,47 @@
+<div class="container-new">
+    <h3 class="title-new">予定の編集</h3>
+
+    <div class="form">
+        <div class="form-container">
+            <%= form_with model: @schedule do |f| %>
+                <table class="table-new">
+                    <tr>
+                        <td style="padding-top: 20px" colspan="2"><%= f.label :title ,"タイトル" %></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-bottom: 20px" colspan="2"><%= f.text_field :title , size: 70 , maxlength: 20 %></td>
+                    </tr>
+
+                    <tr>
+                        <td><%= f.label :startdate ,"開始日" %></td>
+                        <td><%= f.label :enddate ,"終了日" %></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-bottom: 20px" ><%= f.date_select :startdate ,use_month_numbers:true ,start_year:Time.now.year %></td>
+                        <td style="padding-bottom: 20px" ><%= f.date_select :enddate ,use_month_numbers:true ,start_year:Time.now.year %></td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding-bottom: 20px" colspan="2"><%= f.check_box :allday %><%= f.label :allday ,"終日の場合はチェックを入れます" %><td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2"><%= f.label :memo ,"スケジュールメモ" %></td>
+                    </tr>
+                    <td style="padding-bottom: 25px" colspan="2"><%= f.text_area :memo ,size: "64x10" , maxlength: 500 %></td>
+                    <tr>
+
+                    </tr>
+                </table>
+
+                <div class="submit-new">
+                    <%= link_to "キャンセル", :schedules , class:"cancel-new" %>
+                    <%= f.submit "保存" , class:"save-new"%>
+                </div>
+
+            <% end %>
+        </div>
+    </div>
+</div>
